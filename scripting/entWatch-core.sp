@@ -337,13 +337,13 @@ stock void CleanupItems()
 
 				if (IsValidEntity(hItemButton.iButton))
 				{
-					switch(hItemButton.hConfigButton.iType)
+					switch (hItemButton.hConfigButton.iType)
 					{
-						case(EW_BUTTON_TYPE_USE):
+						case (EW_BUTTON_TYPE_USE):
 						{
 							SDKUnhook(hItemButton.iButton, SDKHook_Use, OnButtonPress);
 						}
-						case(EW_BUTTON_TYPE_OUTPUT):
+						case (EW_BUTTON_TYPE_OUTPUT):
 						{
 							char sButtonOutput[32];
 							hItemButton.hConfigButton.GetOutput(sButtonOutput, sizeof(sButtonOutput));
@@ -362,9 +362,9 @@ stock void CleanupItems()
 
 				if (IsValidEntity(hItemTrigger.iTrigger))
 				{
-					switch(hItemTrigger.hConfigTrigger.iType)
+					switch (hItemTrigger.hConfigTrigger.iType)
 					{
-						case(EW_TRIGGER_TYPE_STRIP):
+						case (EW_TRIGGER_TYPE_STRIP):
 						{
 							SDKUnhook(hItemTrigger.iTrigger, SDKHook_StartTouch, OnTriggerTouch);
 							SDKUnhook(hItemTrigger.iTrigger, SDKHook_EndTouch, OnTriggerTouch);
@@ -589,13 +589,13 @@ stock bool RegisterItemButton(CConfigButton hConfigButton, CItem hItem, int iBut
 {
 	if (IsValidEntity(iButton) && !HasDuplicateItemButton(hConfigButton, hItem))
 	{
-		switch(hConfigButton.iType)
+		switch (hConfigButton.iType)
 		{
-			case(EW_BUTTON_TYPE_USE):
+			case (EW_BUTTON_TYPE_USE):
 			{
 				SDKHook(iButton, SDKHook_Use, OnButtonPress);
 			}
-			case(EW_BUTTON_TYPE_OUTPUT):
+			case (EW_BUTTON_TYPE_OUTPUT):
 			{
 				char sButtonOutput[32];
 				hConfigButton.GetOutput(sButtonOutput, sizeof(sButtonOutput));
@@ -659,9 +659,9 @@ stock bool RegisterItemTrigger(CConfigTrigger hConfigTrigger, CItem hItem, int i
 {
 	if (IsValidEntity(iTrigger) && !HasDuplicateItemTrigger(hConfigTrigger, hItem))
 	{
-		switch(hConfigTrigger.iType)
+		switch (hConfigTrigger.iType)
 		{
-			case(EW_TRIGGER_TYPE_STRIP):
+			case (EW_TRIGGER_TYPE_STRIP):
 			{
 				SDKHook(iTrigger, SDKHook_StartTouch, OnTriggerTouch);
 				SDKHook(iTrigger, SDKHook_EndTouch, OnTriggerTouch);
@@ -986,9 +986,9 @@ stock Action ProcessButtonPress(int iClient, CItem hItem, CItemButton hItemButto
 
 		if (bResult)
 		{
-			switch(hItemButton.hConfigButton.iMode)
+			switch (hItemButton.hConfigButton.iMode)
 			{
-				case EW_BUTTON_MODE_COOLDOWN:
+				case (EW_BUTTON_MODE_COOLDOWN):
 				{
 					if (hItemButton.flReadyTime < g_flGameFrameTime)
 					{
@@ -996,7 +996,7 @@ stock Action ProcessButtonPress(int iClient, CItem hItem, CItemButton hItemButto
 					}
 					else return Plugin_Handled;
 				}
-				case EW_BUTTON_MODE_MAXUSES:
+				case (EW_BUTTON_MODE_MAXUSES):
 				{
 					if (hItemButton.iCurrentUses < hItemButton.hConfigButton.iMaxUses)
 					{
@@ -1004,7 +1004,7 @@ stock Action ProcessButtonPress(int iClient, CItem hItem, CItemButton hItemButto
 					}
 					else return Plugin_Handled;
 				}
-				case EW_BUTTON_MODE_COOLDOWN_MAXUSES:
+				case (EW_BUTTON_MODE_COOLDOWN_MAXUSES):
 				{
 					if (hItemButton.flReadyTime < g_flGameFrameTime && hItemButton.iCurrentUses < hItemButton.hConfigButton.iMaxUses)
 					{
@@ -1013,7 +1013,7 @@ stock Action ProcessButtonPress(int iClient, CItem hItem, CItemButton hItemButto
 					}
 					else return Plugin_Handled;
 				}
-				case EW_BUTTON_MODE_COOLDOWN_CHARGES:
+				case (EW_BUTTON_MODE_COOLDOWN_CHARGES):
 				{
 					if (hItemButton.flReadyTime < g_flGameFrameTime)
 					{
