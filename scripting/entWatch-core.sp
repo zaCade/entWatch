@@ -182,6 +182,7 @@ stock bool LoadConfig(bool bLoopEntities = false)
 	if ((iConfigVersion = hConfigFile.GetNum("configversion", -1)) < EW_VERSION_CONFIG)
 	{
 		LogMessage("Config version unsupported or not specified! (version: [%d] | required: [%d])", iConfigVersion, EW_VERSION_CONFIG);
+
 		delete hConfigFile;
 		return false;
 	}
