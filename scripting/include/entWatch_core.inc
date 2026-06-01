@@ -4,7 +4,7 @@
 
 #define entWatch_core_included
 
-#define EW_VERSION                          "4.1.0.1"   /**< The current version of entWatch */
+#define EW_VERSION                          "4.1.0.2"   /**< The current version of entWatch */
 #define EW_VERSION_CONFIG                   1           /**< The current configuration version of entWatch */
 
 /**

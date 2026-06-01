@@ -914,11 +914,11 @@ stock Action OnButtonPress(int iButton, int iClient)
 					{
 						if (hItemButton.hConfigButton.iType == EW_BUTTON_TYPE_USE)
 						{
-							if (HasEntProp(iButton, Prop_Data, "m_flWaitTime"))
+							if (HasEntProp(iButton, Prop_Data, "m_flWait"))
 							{
 								if (hItemButton.flWaitTime < g_flGameFrameTime)
 								{
-									hItemButton.flWaitTime = g_flGameFrameTime + GetEntPropFloat(iButton, Prop_Data, "m_flWaitTime");
+									hItemButton.flWaitTime = g_flGameFrameTime + GetEntPropFloat(iButton, Prop_Data, "m_flWait");
 								}
 								else return Plugin_Handled;
 							}
