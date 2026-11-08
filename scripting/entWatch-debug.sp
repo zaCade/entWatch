@@ -201,10 +201,14 @@ public Action Command_PrintConfigs(int iClient, int iArgs)
 		{
 			CConfigButton hConfigButton = hConfig.hButtons.Get(iConfigButtonID);
 
+			char sName2[32];
+			hConfigButton.GetName(sName2, sizeof(sName2));
+
 			char sOutput[32];
 			hConfigButton.GetOutput(sOutput, sizeof(sOutput));
 
-			PrintToConsole(iClient, "\tButton\n\t\tsOutput: %s\n\t\tiConfigID: %d\n\t\tiHammerID: %d\n\t\tiType: %d\n\t\tiMode: %d\n\t\tiMaxUses: %d\n\t\tflButtonCooldown: %f\n\t\tflItemCooldown: %f\n\t\tbShowActivate: %d\n\t\tbShowCooldown: %d",
+			PrintToConsole(iClient, "\tButton\n\t\tsName: %s\n\t\tsOutput: %s\n\t\tiConfigID: %d\n\t\tiHammerID: %d\n\t\tiType: %d\n\t\tiMode: %d\n\t\tiMaxUses: %d\n\t\tflButtonCooldown: %f\n\t\tflItemCooldown: %f\n\t\tbShowActivate: %d\n\t\tbShowCooldown: %d",
+				sName2,
 				sOutput,
 				hConfigButton.iConfigID,
 				hConfigButton.iHammerID,

@@ -10,6 +10,7 @@ methodmap CConfigButton < StringMap
 	{
 		StringMap stringMap = new StringMap();
 
+		stringMap.SetString("sName",            "");
 		stringMap.SetString("sOutput",          "");
 
 		stringMap.SetValue("hConfig",           hConfig);
@@ -27,6 +28,16 @@ methodmap CConfigButton < StringMap
 		stringMap.SetValue("bShowCooldown",     false);
 
 		return view_as<CConfigButton>(stringMap);
+	}
+
+	public bool GetName(char[] sBuffer, int iLength)
+	{
+		return this.GetString("sName", sBuffer, iLength);
+	}
+
+	public bool SetName(char[] sBuffer)
+	{
+		return this.SetString("sName", sBuffer);
 	}
 
 	public bool GetOutput(char[] sBuffer, int iLength)
