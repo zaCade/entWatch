@@ -1142,7 +1142,7 @@ public any Native_IsEntityItem(Handle hPlugin, int iNumParams)
 		return false;
 
 	int iEntity = GetNativeCell(1);
-	if (!IsValidEdict(iEntity) && IsValidEntity(iEntity) && g_hArray_Items.Length)
+	if (!IsValidEntity(iEntity))
 		return false;
 
 	for (int iItemID; iItemID < g_hArray_Items.Length; iItemID++)
