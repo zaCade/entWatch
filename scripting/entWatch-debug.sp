@@ -260,35 +260,35 @@ public Action Command_TraceItems(int iClient, int iArgs)
 	{
 		CItem hItem = hItems.Get(iItemID);
 
-		if (IsValidEntity(hItem.iWeapon))
-		{
-			if (hItem.iState == EW_ENTITY_STATE_SPAWNED || hItem.iState == EW_ENTITY_STATE_DROPPED)
-			{
-				float flOriginStart[3];
-				GetClientAbsOrigin(iClient, flOriginStart);
+		if (!IsValidEntity(hItem.iWeapon))
+			continue;
 
-				float flOriginEnd[3];
-				GetEntPropVector(hItem.iWeapon, Prop_Data, "m_vecOrigin", flOriginEnd);
+		if (hItem.iState != EW_ENTITY_STATE_SPAWNED && hItem.iState != EW_ENTITY_STATE_DROPPED)
+			continue;
 
-				flOriginStart[2] += 2;
-				flOriginEnd[2] += 2;
+		float flOriginStart[3];
+		GetClientAbsOrigin(iClient, flOriginStart);
 
-				char sColor[8];
-				hItem.hConfig.GetColor(sColor, sizeof(sColor));
+		float flOriginEnd[3];
+		GetEntPropVector(hItem.iWeapon, Prop_Data, "m_vecOrigin", flOriginEnd);
 
-				int iColorDecimal;
-				StringToIntEx(sColor, iColorDecimal, 16);
+		flOriginStart[2] += 2;
+		flOriginEnd[2] += 2;
 
-				int iColor[4];
-				iColor[0] = iColorDecimal >> 16 & 0xFF;
-				iColor[1] = iColorDecimal >> 8  & 0xFF;
-				iColor[2] = iColorDecimal >> 0  & 0xFF;
-				iColor[3] = 0xFF;
+		char sColor[8];
+		hItem.hConfig.GetColor(sColor, sizeof(sColor));
 
-				TE_SetupBeamPoints(flOriginStart, flOriginEnd, g_iBeamSprite, g_iHaloSprite, 0, 10, 5.0, 2.0, 2.0, 0, 0.5, iColor, 10);
-				TE_SendToClient(iClient);
-			}
-		}
+		int iColorDecimal;
+		StringToIntEx(sColor, iColorDecimal, 16);
+
+		int iColor[4];
+		iColor[0] = iColorDecimal >> 16 & 0xFF;
+		iColor[1] = iColorDecimal >> 8  & 0xFF;
+		iColor[2] = iColorDecimal >> 0  & 0xFF;
+		iColor[3] = 0xFF;
+
+		TE_SetupBeamPoints(flOriginStart, flOriginEnd, g_iBeamSprite, g_iHaloSprite, 0, 10, 5.0, 2.0, 2.0, 0, 0.5, iColor, 10);
+		TE_SendToClient(iClient);
 	}
 
 	ReplyToCommand(iClient, "\x04[entWatch] \x01items traced.");
