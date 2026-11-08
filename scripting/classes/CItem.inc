@@ -152,4 +152,33 @@ methodmap CItem < StringMap
 			this.SetValue("hTriggers", hValue);
 		}
 	}
+
+	public void Delete()
+	{
+		if (this.hButtons != null)
+		{
+			for (int iItemButtonID; iItemButtonID < this.hButtons.Length; iItemButtonID++)
+			{
+				StringMap hItemButton = this.hButtons.Get(iItemButtonID);
+
+				delete hItemButton;
+			}
+
+			delete this.hButtons;
+		}
+
+		if (this.hTriggers != null)
+		{
+			for (int iItemTriggerID; iItemTriggerID < this.hTriggers.Length; iItemTriggerID++)
+			{
+				StringMap hItemTrigger = this.hTriggers.Get(iItemTriggerID);
+
+				delete hItemTrigger;
+			}
+
+			delete this.hTriggers;
+		}
+
+		delete this;
+	}
 }

@@ -301,21 +301,7 @@ stock void CleanupConfigs()
 	{
 		CConfig hConfig = g_hArray_Configs.Get(iConfigID);
 
-		for (int iConfigButtonID; iConfigButtonID < hConfig.hButtons.Length; iConfigButtonID++)
-		{
-			CConfigButton hConfigButton = hConfig.hButtons.Get(iConfigButtonID);
-
-			delete hConfigButton;
-		}
-
-		for (int iConfigTriggerID; iConfigTriggerID < hConfig.hTriggers.Length; iConfigTriggerID++)
-		{
-			CConfigTrigger hConfigTrigger = hConfig.hTriggers.Get(iConfigTriggerID);
-
-			delete hConfigTrigger;
-		}
-
-		delete hConfig;
+		hConfig.Delete();
 	}
 
 	g_hArray_Configs.Clear();
@@ -338,10 +324,7 @@ stock void CleanupItems()
 			CItemButton hItemButton = hItem.hButtons.Get(iItemButtonID);
 
 			if (!IsValidEntity(hItemButton.iButton))
-			{
-				delete hItemButton;
 				continue;
-			}
 
 			switch (hItemButton.hConfigButton.iType)
 			{
@@ -357,8 +340,6 @@ stock void CleanupItems()
 					UnhookSingleEntityOutput(hItemButton.iButton, sButtonOutput, OnButtonOutput);
 				}
 			}
-
-			delete hItemButton;
 		}
 
 		for (int iItemTriggerID; iItemTriggerID < hItem.hTriggers.Length; iItemTriggerID++)
@@ -366,10 +347,7 @@ stock void CleanupItems()
 			CItemTrigger hItemTrigger = hItem.hTriggers.Get(iItemTriggerID);
 
 			if (!IsValidEntity(hItemTrigger.iTrigger))
-			{
-				delete hItemTrigger;
 				continue;
-			}
 
 			switch (hItemTrigger.hConfigTrigger.iType)
 			{
@@ -380,11 +358,9 @@ stock void CleanupItems()
 					SDKUnhook(hItemTrigger.iTrigger, SDKHook_Touch, OnTriggerTouch);
 				}
 			}
-
-			delete hItemTrigger;
 		}
 
-		delete hItem;
+		hItem.Delete();
 	}
 
 	g_hArray_Items.Clear();
@@ -460,7 +436,7 @@ stock void OnEntitySpawnPost(int iEntity)
 					InsertItemSorted(g_hArray_Items, hItem);
 					break;
 				}
-				else delete hItem;
+				else hItem.Delete();
 			}
 		}
 
@@ -496,7 +472,7 @@ stock void OnEntitySpawnPost(int iEntity)
 					InsertItemSorted(g_hArray_Items, hItem);
 					break;
 				}
-				else delete hItem;
+				else hItem.Delete();
 			}
 		}
 
@@ -532,7 +508,7 @@ stock void OnEntitySpawnPost(int iEntity)
 					InsertItemSorted(g_hArray_Items, hItem);
 					break;
 				}
-				else delete hItem;
+				else hItem.Delete();
 			}
 		}
 	}

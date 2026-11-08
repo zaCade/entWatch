@@ -151,4 +151,33 @@ methodmap CConfig < StringMap
 			this.SetValue("hTriggers", hValue);
 		}
 	}
+
+	public void Delete()
+	{
+		if (this.hButtons != null)
+		{
+			for (int iConfigButtonID; iConfigButtonID < this.hButtons.Length; iConfigButtonID++)
+			{
+				StringMap hConfigButton = this.hButtons.Get(iConfigButtonID);
+
+				delete hConfigButton;
+			}
+
+			delete this.hButtons;
+		}
+
+		if (this.hTriggers != null)
+		{
+			for (int iConfigTriggerID; iConfigTriggerID < this.hTriggers.Length; iConfigTriggerID++)
+			{
+				StringMap hConfigTrigger = this.hTriggers.Get(iConfigTriggerID);
+
+				delete hConfigTrigger;
+			}
+
+			delete this.hTriggers;
+		}
+
+		delete this;
+	}
 }
